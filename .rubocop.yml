@@ -1,0 +1,44 @@
+AllCops:
+  Exclude:
+    - 'db/migrate/*'
+    - 'db/schema.rb'
+    - 'bin/*'
+    - 'lib/tasks/*'
+    - 'node_modules/**/*'
+    - 'config/**/*'
+
+  DisplayCopNames: true
+
+Layout/SpaceInLambdaLiteral:
+  EnforcedStyle: require_space
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Include:
+    - 'app/controllers/*'
+    - 'app/models/*'
+  Max: 20
+
+Metrics/AbcSize:
+  Include:
+    - 'app/controllers/*'
+    - 'app/models/*'
+  Max: 50
+
+Metrics/ClassLength:
+  Max: 150
+
+Metrics/BlockLength:
+  IgnoredMethods: ['describe']
+  Max: 30

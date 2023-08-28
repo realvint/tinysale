@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14.6-bullseye
+    container_name: tinysale_postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      PSQL_HISTFILE: /user/local/hist/.psql_history
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+  redis:
+    image: redis:6.2-alpine
+    container_name: tinysale_redis
+    volumes:
+      - redis:/data
+    ports:
+      - '6379:6379'
+    healthcheck:
+      test: redis-cli ping
+      interval: 1s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  postgres:
+    name: tinysale_postgres
+  redis:
+    name: tinysale_redis

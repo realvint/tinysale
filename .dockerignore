@@ -1,0 +1,7 @@
+/.git
+/.idea
+/log/*
+/secrets
+/public/system
+/*.sql
+/tmp
