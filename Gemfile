@@ -8,6 +8,7 @@ gem 'rails', '~> 7.0.7', '>= 7.0.7.2'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'devise'
+gem 'dotenv-rails', '2.8.1', require: 'dotenv/rails-now'
 gem 'jsbundling-rails'
 gem 'letter_opener_web' # To easily see the emails devise sends in development
 gem 'pg', '~> 1.1'
