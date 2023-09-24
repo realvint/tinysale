@@ -21,7 +21,9 @@
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Pricing</a>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+        <%= link_to new_user_session_path, class: 'text-sm font-semibold leading-6 text-gray-900' do %>
+          Log in <span aria-hidden="true">&rarr;</span>
+        <% end %>
       </div>
     </nav>
     <!--Mobile menu-->
