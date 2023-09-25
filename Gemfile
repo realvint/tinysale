@@ -10,7 +10,7 @@ gem 'cssbundling-rails'
 gem 'devise'
 gem 'dotenv-rails', '2.8.1', require: 'dotenv/rails-now'
 gem 'jsbundling-rails'
-gem 'letter_opener_web' # To easily see the emails devise sends in development
+gem 'money-rails', '~> 1.12'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'sassc-rails' # Use Sass to process CSS
@@ -27,6 +27,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'letter_opener_web' # To easily see the emails devise sends in development
   gem 'web-console'
 end
 
