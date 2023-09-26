@@ -9,6 +9,7 @@ gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'devise'
 gem 'dotenv-rails', '2.8.1', require: 'dotenv/rails-now'
+gem 'friendly_id', '~> 5.4.0'
 gem 'jsbundling-rails'
 gem 'money-rails', '~> 1.12'
 gem 'pg', '~> 1.1'
