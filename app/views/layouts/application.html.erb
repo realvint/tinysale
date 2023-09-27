@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="<%= 'h-full bg-gray-50' if devise_controller? || user_signed_in? %>">
   <head>
     <title>Tinysale</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,7 +10,12 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body class="<%= 'h-full bg-gray-50' if devise_controller? %>">
-    <%= yield %>
+  <body class="h-full">
+    <%= render 'shared/sidenav' if user_signed_in? %>
+    <main class="py-10 lg:pl-72">
+      <div class="px-4 sm:px-6 lg:px-8">
+        <%= yield %>
+      </div>
+    </main>
   </body>
 </html>
