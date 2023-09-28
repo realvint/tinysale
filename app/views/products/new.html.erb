@@ -1,0 +1,32 @@
+<div class="space-y-10 divide-y divide-gray-900/10">
+  <div class="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
+    <div class="px-4 sm:px-0">
+      <h2 class="text-base font-semibold leading-7 text-gray-900">Create a new Product</h2>
+      <p class="mt-1 text-sm leading-6 text-gray-600">Just do it</p>
+    </div>
+
+    <%= form_with model: @product, html: { class: 'bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2' }  do |f| %>
+      <div class="px-4 py-6 sm:p-8">
+        <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="col-span-full">
+            <%= f.label :name, class: 'block text-sm font-medium leading-6 text-gray-900' %>
+            <div class="mt-1">
+              <%= f.text_field :name, class: 'block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' %>
+            </div>
+          </div>
+
+          <div class="col-span-full">
+            <%= f.label :price, class: 'block text-sm font-medium leading-6 text-gray-900' %>
+            <div class="mt-1">
+              <%= f.text_field :price, class: 'block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+        <%= link_to 'Cancel', '#', class: 'text-sm font-semibold leading-6 text-gray-900' %>
+        <%= f.submit class: 'rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500' %>
+      </div>
+    <% end %>
+  </div>
+</div>
