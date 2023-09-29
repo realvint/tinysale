@@ -5,5 +5,9 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index'
 
-  resources :products
+  resources :products do
+    member do
+      post :toggle_published
+    end
+  end
 end

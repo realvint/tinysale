@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.friendly.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def new
@@ -18,11 +18,32 @@ class ProductsController < ApplicationController
 
     if @product.save
       respond_to do |format|
-        format.html { redirect_to @product }
+        format.html { redirect_to edit_product_path(@product) }
       end
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @product = Product.find(params[:id])
+  end
+
+  def update
+    if @product.update(product_params)
+      respond_to do |format|
+        format.html { redirect_to products_path }
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def toggle_published
+    @product = Product.find(params[:id])
+    @product.toggle! :published
+
+    redirect_to edit_product_path(@product)
   end
 
   private
