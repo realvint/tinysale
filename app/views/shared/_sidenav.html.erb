@@ -76,6 +76,8 @@
           </svg>
           Products
         <% end %>
+
+        <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'ps-11 group flex items-center px-2 py-2 text-sm font-medium rounded-m' %>
       </nav>
     </div>
     <div class="flex flex-shrink-0 border-t border-gray-200 p-4">
