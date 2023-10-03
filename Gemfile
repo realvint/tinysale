@@ -18,6 +18,7 @@ gem 'sassc-rails' # Use Sass to process CSS
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
+gem 'view_component'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
