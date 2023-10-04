@@ -1,13 +1,12 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_product, only: %i[show edit update toggle_published]
 
   def index
     @products = Product.all
   end
 
-  def show
-    @product = Product.find(params[:id])
-  end
+  def show; end
 
   def new
     @product = current_user.products.build
@@ -25,9 +24,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def edit
-    @product = Product.find(params[:id])
-  end
+  def edit; end
 
   def update
     if @product.update(product_params)
@@ -40,10 +37,14 @@ class ProductsController < ApplicationController
   end
 
   def toggle_published
-    @product = Product.find(params[:id])
     @product.toggle! :published
 
-    redirect_to edit_product_path(@product)
+    flash.now[:notice] = (@product.published? ? 'Product published' : 'Product removed from publication').to_s
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to edit_product_path(@product) }
+    end
   end
 
   private
@@ -51,5 +52,9 @@ class ProductsController < ApplicationController
   def product_params
     params[:product].delete(:price) if params[:product][:price].to_f.zero?
     params.require(:product).permit(:name, :price)
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 end
