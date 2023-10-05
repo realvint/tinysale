@@ -19,9 +19,17 @@ RSpec.describe 'Products', type: :request do
     end
   end
 
+  describe 'GET edit' do
+    it 'returns http success' do
+      product = create(:product)
+      get edit_product_path(product)
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe 'POST create' do
     context 'valid params with price as string' do
-      it 'succeeds' do
+      it 'should succeeds' do
         expect do
           post products_path, params: {
             product: {
@@ -35,7 +43,7 @@ RSpec.describe 'Products', type: :request do
     end
 
     context 'valid params with price as number' do
-      it 'succeeds' do
+      it 'should succeeds' do
         expect do
           post products_path, params: {
             product: {
@@ -57,6 +65,20 @@ RSpec.describe 'Products', type: :request do
         post toggle_published_product_path(product)
         product.reload
       end.to change { product.published }.from(false).to(true)
+      expect(response).to redirect_to edit_product_path(product)
+    end
+  end
+
+  describe 'PUT update' do
+    it 'should succeeds' do
+      product = create(:product)
+      expect do
+        put product_path(product), params: {
+          product: {
+            name: 'new name'
+          }
+        }
+      end.to change { product.reload.name }.to('new name')
       expect(response).to redirect_to edit_product_path(product)
     end
   end
