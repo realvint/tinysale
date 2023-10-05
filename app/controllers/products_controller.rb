@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
 
     if @product.save
       respond_to do |format|
-        format.html { redirect_to edit_product_path(@product) }
+        format.html { redirect_to edit_product_path(@product), notice: 'Product was created' }
       end
     else
       render :new, status: :unprocessable_entity
@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
   def update
     if @product.update(product_params)
       respond_to do |format|
-        format.html { redirect_to products_path }
+        format.html { redirect_to edit_product_path(@product), notice: 'Product was updated' }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -51,7 +51,7 @@ class ProductsController < ApplicationController
 
   def product_params
     params[:product].delete(:price) if params[:product][:price].to_f.zero?
-    params.require(:product).permit(:name, :price)
+    params.require(:product).permit(:name, :price, :slug)
   end
 
   def set_product

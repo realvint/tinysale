@@ -1,9 +1,42 @@
-<div class="sticky top-0 bg-gray-50 flex justify-between">
-  <h1 class="text-3xl text-gray-900 tracking-wide"><%= @product.name %></h1>
-  <div class="flex">
-    <section id='<%= dom_id(@product, :published_button) %>'>
-      <%= render 'products/parts/published', product: @product %>
-    </section>
-    <%= link_to 'Save changes', '', class: 'ms-2 flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' %>
+<%= form_with model: @product do |f| %>
+  <div class="sticky top-0 bg-gray-50 py-10 flex justify-between border-b mb-6 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl text-gray-900 tracking-wide"><%= @product.name %></h1>
+    <div class="inline-flex">
+      <section id='<%= dom_id(@product, :published_button) %>'>
+        <%= render 'products/parts/published', product: @product %>
+      </section>
+      <%= f.submit 'Save changes', class: "#{indigo_btn} ms-2" %>
+    </div>
   </div>
-</div>
+  <div class="px-4 sm:px-6 lg:px-8">
+    <div class="space-y-8">
+
+      <div class="mb-5">
+        <h2 class="text-lg font-medium leading-6 text-gray-900">Product Information</h2>
+        <p class="mt-1 text-sm text-gray-600">Update your product's information.</p>
+      </div>
+
+      <div class="col-span-full mb-5">
+        <%= f.label :name, class: 'block text-sm font-medium leading-6 text-gray-900' %>
+        <div class="mt-1">
+          <%= f.text_field :name, class: form_input %>
+        </div>
+      </div>
+
+      <div class="col-span-full">
+        <%= f.label :price, class: form_label %>
+        <div class="mt-1">
+          <%= f.text_field :price, class: form_input %>
+        </div>
+      </div>
+
+      <div class="col-span-full">
+        <%= f.label :slug,'URL', class: 'block text-sm font-medium leading-6 text-gray-900' %>
+        <div class="mt-1">
+          <%= f.text_field :slug, class: form_input %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<% end %>
