@@ -9,5 +9,7 @@ Rails.application.routes.draw do
     member do
       post :toggle_published
     end
+
+    resources :contents, only: :index, controller: 'products/contents'
   end
 end

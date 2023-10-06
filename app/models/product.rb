@@ -7,9 +7,10 @@ class Product < ApplicationRecord
 
   belongs_to :user
 
-  validates :name, presence: true, uniqueness: { scope: :user_id, case_sensitive: false }
-
   has_rich_text :description
+  has_many_attached :contents
+
+  validates :name, presence: true, uniqueness: { scope: :user_id, case_sensitive: false }
 
   def draft?
     !published?

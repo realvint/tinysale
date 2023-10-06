@@ -4,9 +4,19 @@ module ApplicationHelper
      shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-100 focus:ring-offset-2'
   end
 
+  def rounded_white_btn
+    'inline-flex items-center rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700
+     shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-100 focus:ring-offset-2'
+  end
+
   def indigo_btn
     'inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium
      text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+  end
+
+  def btn_link
+    'inline-flex items-center rounded-full border border-transparent bg-gray-50 px-4 py-2 text-sm font-medium
+     text-gray-700 hover:bg-white focus:outline-none focus:ring-2 focus:ring-gray-100 focus:ring-offset-2'
   end
 
   def form_input
