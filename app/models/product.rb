@@ -9,6 +9,8 @@ class Product < ApplicationRecord
 
   validates :name, presence: true, uniqueness: { scope: :user_id, case_sensitive: false }
 
+  has_rich_text :description
+
   def draft?
     !published?
   end

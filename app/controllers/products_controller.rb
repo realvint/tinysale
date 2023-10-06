@@ -51,7 +51,7 @@ class ProductsController < ApplicationController
 
   def product_params
     params[:product].delete(:price) if params[:product][:price].to_f.zero?
-    params.require(:product).permit(:name, :price, :slug)
+    params.require(:product).permit(:name, :price, :slug, :description)
   end
 
   def set_product

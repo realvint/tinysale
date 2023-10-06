@@ -26,6 +26,13 @@
     </div>
 
     <div class="col-span-full">
+      <%= f.label :description, class: form_label %>
+      <div class="mt-1">
+        <%= f.rich_text_area :description, class: "#{form_input} bg-white" %>
+      </div>
+    </div>
+
+    <div class="col-span-full">
       <%= f.label :price, class: form_label %>
       <div class="mt-1">
         <%= f.text_field :price, class: form_input %>
