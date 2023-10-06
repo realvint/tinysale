@@ -1,11 +1,13 @@
 <%= form_with model: @product do |f| %>
-  <div class="sticky top-0 bg-gray-50 py-10 flex justify-between border-b mb-6 px-4 sm:px-6 lg:px-8">
+  <div class="sticky top-0 bg-gray-50 py-10 lg:flex justify-between border-b mb-6 px-4 sm:px-6 lg:px-8">
     <h1 class="text-3xl text-gray-900 tracking-wide"><%= @product.name %></h1>
-    <div class="inline-flex">
+    <div class="inline-flex pt-3 sm:pt-4 lg:pt-0">
       <section id='<%= dom_id(@product, :published_button) %>'>
         <%= render 'products/parts/published', product: @product %>
       </section>
-      <%= f.submit 'Save changes', class: "#{indigo_btn} ms-2" %>
+      <div>
+        <%= f.submit 'Save changes', class: "#{indigo_btn} ms-2" %>
+      </div>
     </div>
   </div>
 
@@ -34,7 +36,7 @@
       <%= f.label :slug,'URL', class: form_label %>
       <div class="mt-1">
         <div class="flex py-2 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
-          <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm">https://www.example.com/products/</span>
+          <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm">/products/</span>
           <%= f.text_field :slug, class: 'focus:ring-0 focus:outline-none block flex-1 border-0 bg-transparent text-gray-900 sm:text-sm sm:leading-6' %>
         </div>
       </div>
