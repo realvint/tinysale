@@ -8,7 +8,8 @@ class Product < ApplicationRecord
   belongs_to :user
 
   has_rich_text :description
-  has_many_attached :contents
+
+  has_many :contents, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { scope: :user_id, case_sensitive: false }
 
