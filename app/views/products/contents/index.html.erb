@@ -1,2 +1,27 @@
-<h1>Contents for:</h1>
-<%= @product.name %>
+<%= form_with model: @product do |f| %>
+  <%= render 'products/parts/sticky_header', product: @product,  f: f %>
+
+  <div class="space-y-8 px-4 sm:px-6 lg:px-8">
+    <div>
+      <h2 class="text-lg font-medium leading-6 text-gray-900">Content Delivery</h2>
+      <p class="mt-1 text-sm text-gray-600">Upload the product's content for purchase</p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <div class="sm:col-span-4">
+        <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+          <div class="space-y-3 text-center">
+            <i class="fa-solid fa-arrow-up-from-bracket fa-2xl text-gray-600"></i>
+            <div class="flex text-sm text-gray-600 justify-center">
+              <label for="file-upload" class="relative cursor-pointer rounded-md bg-gray-50 font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                <span>Upload a file</span>
+                <input id="file-upload" name="file-upload" type="file" class="sr-only">
+              </label>
+            </div>
+            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

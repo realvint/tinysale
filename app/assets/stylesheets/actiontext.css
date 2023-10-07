@@ -5,7 +5,7 @@
  *
 
 */
-@import "trix/dist"; /* I'm importing it this way */
+@import "trix"; /* I'm importing it this way */
 
 /*
  * We need to override trix.css’s image gallery styles to accommodate the

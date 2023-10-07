@@ -1,27 +1,5 @@
 <%= form_with model: @product do |f| %>
-  <div class="sticky top-0 bg-gray-50 py-10 border-b mb-6 px-4 sm:px-6 lg:px-8">
-    <div class="lg:flex justify-between">
-      <h1 class="text-3xl text-gray-900 tracking-wide"><%= @product.name %></h1>
-      <div class="inline-flex pt-3 sm:pt-4 lg:pt-0">
-        <section id='<%= dom_id(@product, :published_button) %>'>
-          <%= render 'products/parts/published', product: @product %>
-        </section>
-        <div>
-          <%= f.submit 'Save changes', class: "#{indigo_btn} ms-2" %>
-        </div>
-      </div>
-    </div>
-    <div class="flex mt-6">
-      <div>
-        <%= link_to 'Product', edit_product_path(@product),
-            class: controller_name == 'products' ? rounded_white_btn : btn_link %>
-      </div>
-      <div class="ml-4">
-        <%= link_to 'Content', product_contents_path(@product),
-          class: controller_name == 'contents' ? rounded_white_btn : btn_link %>
-      </div>
-    </div>
-  </div>
+  <%= render 'products/parts/sticky_header', product: @product,  f: f %>
 
   <div class="space-y-8 px-4 sm:px-6 lg:px-8">
 
@@ -60,6 +38,5 @@
         </div>
       </div>
     </div>
-
   </div>
 <% end %>
