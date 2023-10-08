@@ -5,7 +5,7 @@ module Api
     def create
       @content = Content.create(content_params)
 
-      render json: @content.to_json
+      render json: ContentSerializer.new(@content).serializable_hash.to_json
     end
 
     private
