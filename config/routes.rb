@@ -12,4 +12,8 @@ Rails.application.routes.draw do
 
     resources :contents, only: :index, controller: 'products/contents'
   end
+
+  namespace :api do
+    resources :contents, only: :create
+  end
 end
