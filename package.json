@@ -7,6 +7,7 @@
     "@hotwired/turbo-rails": "^7.3.0",
     "@rails/actiontext": "^7.1.0",
     "autoprefixer": "^10.4.15",
+    "axios": "^1.5.1",
     "el-transition": "^0.0.7",
     "esbuild": "^0.19.2",
     "postcss": "^8.4.28",
