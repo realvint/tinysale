@@ -12,3 +12,6 @@ application.register("notification", NotificationController)
 
 import SidenavController from "./sidenav_controller"
 application.register("sidenav", SidenavController)
+
+import UploadedFileController from "./uploaded_file_controller"
+application.register("uploaded-file", UploadedFileController)

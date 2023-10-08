@@ -1,0 +1,51 @@
+<div
+  data-controller="uploaded-file"
+  class="relative  rounded-lg border border-gray-300 bg-white px-6 py-4 shadow-sm hover:border-gray-400 mb-4"
+>
+  <div class="flex items-center space-x-3">
+    <div class="flex-shrink-0">
+      <i class="fa-regular fa-file-lines fa-2xl"></i>
+    </div>
+    <div class="min-w-0 flex-1">
+      <div>
+        <p class="text-sm font-medium text-gray-900"><%= @name %></p>
+        <p class="truncate text-sm text-gray-500"><%= @file_type.upcase %> &middot; <%= @file_size %></p>
+      </div>
+    </div>
+
+    <div class="flex flex-shrink-0">
+      <div class="mr-2">
+        <%= link_to '#', data: { 'uploaded-file-target': 'open', action: 'click->uploaded-file#open' }, class: "#{white_btn} py-3" do %>
+          <i class="fa-solid fa-chevron-down"></i>
+        <% end %>
+
+        <%= link_to '#', data: { 'uploaded-file-target': 'close', action: 'click->uploaded-file#close' }, class: "#{white_btn} py-3 hidden" do %>
+          <i class="fa-solid fa-chevron-up"></i>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to '#', data: { 'uploaded-file-target': 'delete', action: 'click->uploaded-file#delete' }, class: "#{white_btn} py-3" do %>
+          <i class="fa-regular fa-trash-can"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div
+    data-uploaded-file-target="form"
+    class="mt-5 mb-3 space-y-3 hidden"
+  >
+    <div class="sm:col-span-3">
+      <%= label_tag :name, 'Name', class: 'block text-sm font-medium text-gray-700' %>
+      <div class="mt-1">
+        <%= text_field_tag :name, @name, class: form_input %>
+      </div>
+    </div>
+
+    <div class="sm:col-span-3">
+      <%= label_tag :description, 'Description', class: 'block text-sm font-medium text-gray-700' %>
+      <div class="mt-1">
+        <%= text_field_tag :description, @description, class: form_input %>
+      </div>
+    </div>
+  </div>
+</div>
