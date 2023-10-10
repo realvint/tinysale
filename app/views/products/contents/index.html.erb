@@ -1,4 +1,4 @@
-<%= form_with model: @product do |f| %>
+<%= form_with model: @product, data: { controller: 'file-picker' } do |f| %>
   <%= render 'products/parts/sticky_header', product: @product,  f: f %>
 
   <div class="px-4 sm:px-6 lg:px-8 pb-10">
@@ -10,16 +10,27 @@
         </div>
 
         <div class="space-y-6">
-          <%= render UploadedFileComponent.new(name: 'Some file', file_type: 'zip', file_size: '314.2 MB') %>
+          <%=  turbo_frame_tag 'uploaded_files' do %>
+            <% @contents.each do |content| %>
+              <%= render UploadedFileComponent.new(name: content.name, file_type: content.file_type, file_size: content.file_size) %>
+            <% end %>
+          <% end %>
         </div>
 
         <div class="flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6 bg-white">
           <div class="space-y-3 text-center">
             <i class="fa-solid fa-arrow-up-from-bracket fa-2xl text-gray-600"></i>
-            <div class="flex text-sm text-gray-600 justify-center">
-              <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
-                <span>Upload a file</span>
-                <input id="file-upload" name="file-upload" type="file" class="sr-only">
+            <div class="text-sm text-gray-600 justify-center">
+              <label for="file-upload" class="relative cursor-pointer bg-white font-medium text-indigo-600 focus-within:outline-none hover:text-indigo-500">
+                <span>Upload your files</span>
+                <input
+                  data-action="change->file-picker#uploadFiles"
+                  id="file-upload"
+                  name="file-upload"
+                  type="file"
+                  class="sr-only"
+                  multiple
+                >
               </label>
             </div>
             <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>

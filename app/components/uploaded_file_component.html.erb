@@ -9,7 +9,7 @@
     <div class="min-w-0 flex-1">
       <div>
         <p class="text-sm font-medium text-gray-900"><%= @name %></p>
-        <p class="truncate text-sm text-gray-500"><%= @file_type.upcase %> &middot; <%= @file_size %></p>
+        <p class="truncate text-sm text-gray-500"><%= @file_type.match(/\/(.+)/)[1].upcase %> &middot; <%= number_to_human_size(@file_size) %></p>
       </div>
     </div>
 

@@ -4,6 +4,7 @@ module Products
 
     def index
       @product = Product.find(params[:product_id])
+      @contents = @product.contents
     end
   end
 end
