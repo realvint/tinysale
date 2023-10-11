@@ -1,4 +1,4 @@
-<%= form_with model: @product, data: { controller: 'file-picker' } do |f| %>
+<%= form_with model: @product, class: 'file-picker', data: { controller: 'file-picker' } do |f| %>
   <%= render 'products/parts/sticky_header', product: @product,  f: f %>
 
   <div class="px-4 sm:px-6 lg:px-8 pb-10">
@@ -12,7 +12,7 @@
         <div class="space-y-6">
           <%=  turbo_frame_tag 'uploaded_files' do %>
             <% @contents.each do |content| %>
-              <%= render UploadedFileComponent.new(name: content.name, file_type: content.file_type, file_size: content.file_size) %>
+              <%= render UploadedFileComponent.new(content_id: content.id, name: content.name, file_type: content.file_type, file_size: content.file_size) %>
             <% end %>
           <% end %>
         </div>
