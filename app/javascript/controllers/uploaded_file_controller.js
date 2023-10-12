@@ -10,11 +10,11 @@ export default class extends Controller {
 
   HEADERS = {
     'ACCEPT': 'application/json',
-    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+    // 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
   }
 
   connect() {
-    this.filePickerOutlets[0].attachFile(this)
+    this.filePickerOutlet.attachFile(this)
   }
 
   attachFile(attachedFile) {

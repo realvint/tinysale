@@ -1,32 +1,36 @@
 import { Controller } from '@hotwired/stimulus'
 import axios from 'axios'
 
-const files = []
+let files = []
 
 // Connects to data-controller="file-picker"
 export default class extends Controller {
   HEADERS = {
     'ACCEPT': 'text/vnd.turbo-stream.html',
-    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+    // 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
   }
 
   attachFile(content) {
-   content.attachFile(files[0])
-   content.uploadFile()
+    const contentId = content.element.dataset.contentId
+    const fileIndex = files.findIndex(file => file.contentId == contentId)
+    content.attachFile(files[fileIndex])
+    files = files.splice(fileIndex, fileIndex)
+    content.uploadFile()
   }
 
   uploadFiles(e) {
-    files.push(e.target.files[0])
-
-    axios.post('/api/contents', {
-      name: e.target.files[0].name,
-      file_type: e.target.files[0].type,
-      file_size: e.target.files[0].size
-    }, { headers: this.HEADERS })
-      .then((response) => {
-        const contentId = response.data.match(/data-content-id=("\d+")/)[1].replace(/"|'/g, '')
-
-        Turbo.renderStreamMessage(response.data)
-      })
+    Array.from(e.target.files).forEach((file) => {
+      axios.post('/api/contents', {
+        name: file.name,
+        file_type: file.type,
+        file_size: file.size
+      }, { headers: this.HEADERS })
+        .then((response) => {
+          const contentId = response.data.match(/data-content-id=("\d+")/)[1].replace(/"|'/g, '')
+          file['contentId'] = parseInt(contentId)
+          files.push(file)
+          Turbo.renderStreamMessage(response.data)
+        })
+    })
   }
 }
