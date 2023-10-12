@@ -1,8 +1,6 @@
 import { Controller } from '@hotwired/stimulus'
 import axios from 'axios'
 
-const contents = []
-const contentIds = []
 const files = []
 
 // Connects to data-controller="file-picker"
@@ -14,6 +12,7 @@ export default class extends Controller {
 
   attachFile(content) {
    content.attachFile(files[0])
+   content.uploadFile()
   }
 
   uploadFiles(e) {
@@ -26,11 +25,8 @@ export default class extends Controller {
     }, { headers: this.HEADERS })
       .then((response) => {
         const contentId = response.data.match(/data-content-id=("\d+")/)[1].replace(/"|'/g, '')
-        contentIds.push(contentId)
-        Turbo.renderStreamMessage(response.data)
 
-        console.log('contentId:', contentId)
-        console.log('contents array', contents)
+        Turbo.renderStreamMessage(response.data)
       })
   }
 }

@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus'
+import axios from 'axios'
 
 let file = null
 
@@ -7,13 +8,35 @@ export default class extends Controller {
   static targets = ['form', 'open', 'close', 'delete']
   static outlets = ['file-picker']
 
+  HEADERS = {
+    'ACCEPT': 'application/json',
+    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+  }
+
   connect() {
     this.filePickerOutlets[0].attachFile(this)
   }
 
   attachFile(attachedFile) {
     file = attachedFile
-    console.log(file)
+  }
+
+  uploadFile() {
+    const config = {
+      onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+        console.log('progressEvent: ', progressEvent)
+        console.log('percentCompleted: ', percentCompleted)
+      },
+      headers: this.HEADERS
+    }
+    const data = new FormData()
+    data.append('content[file]', file)
+
+    axios.put(`/api/contents/${this.element.dataset.contentId}`, data, config)
+      .then((response) => {
+        console.log('uploadFile response: ', response)
+      })
   }
 
   open(e) {
