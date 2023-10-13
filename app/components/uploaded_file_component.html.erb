@@ -2,7 +2,7 @@
   data-controller="uploaded-file"
   data-uploaded-file-file-picker-outlet=".file-picker"
   data-content-id="<%= @content_id %>"
-  class="uploaded-file relative  rounded-lg border border-gray-300 bg-white px-6 py-4 shadow-sm hover:border-gray-400 mb-4"
+  class="relative  rounded-lg border border-gray-300 bg-white px-6 py-4 shadow-sm hover:border-gray-400 mb-4"
 >
   <div class="flex items-center space-x-3">
     <div class="flex-shrink-0">
@@ -11,7 +11,24 @@
     <div class="min-w-0 flex-1">
       <div>
         <p class="text-sm font-medium text-gray-900"><%= @name %></p>
-        <p class="truncate text-sm text-gray-500"><%= @file_type.match(/\/(.+)/)[1].upcase %> &middot; <%= number_to_human_size(@file_size) %></p>
+        <p class="truncate text-sm text-gray-500">
+          <span
+            class="fa-solid fa-spinner fa-spin-pulse"
+            data-uploaded-file-target="spinner"
+          ></span>
+          <span
+            class="hidden"
+            data-uploaded-file-target="uploadProgress"
+            data-file-type="<%= @file_type.match(/\/(.+)/)[1].upcase %>"
+            data-file-size="<%= number_to_human_size(@file_size) %>"
+          ></span>
+          <span
+            class="hidden"
+            data-uploaded-file-target="metadata"
+          >
+            <%= @file_type.match(/\/(.+)/)[1].upcase %> &middot; <%= number_to_human_size(@file_size) %>
+          </span>
+        </p>
       </div>
     </div>
 

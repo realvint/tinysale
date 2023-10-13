@@ -1,11 +1,12 @@
 import { Controller } from '@hotwired/stimulus'
 import axios from 'axios'
+import prettyBytes from 'pretty-bytes'
 
 let file = null
 
 // Connects to data-controller="uploaded-file"
 export default class extends Controller {
-  static targets = ['form', 'open', 'close', 'delete']
+  static targets = ['form', 'open', 'close', 'delete', 'metadata', 'uploadProgress', 'spinner']
   static outlets = ['file-picker']
 
   HEADERS = {
@@ -21,12 +22,20 @@ export default class extends Controller {
     file = attachedFile
   }
 
+  uploadProgressText(percentCompleted, uploadRate) {
+    const totalFileSize = this.uploadProgressTarget.dataset.fileSize
+    const fileType = this.uploadProgressTarget.dataset.fileType
+
+    return `${fileType} · ${percentCompleted}% of ${totalFileSize} (${prettyBytes(uploadRate).toUpperCase()}/second)`
+  }
+
   uploadFile() {
     const config = {
       onUploadProgress: (progressEvent) => {
         const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-        console.log('progressEvent: ', progressEvent)
-        console.log('percentCompleted: ', percentCompleted)
+        this.uploadProgressTarget.classList.remove('hidden')
+        this.metadataTarget.classList.add('hidden')
+        this.uploadProgressTarget.textContent = this.uploadProgressText(percentCompleted, progressEvent.rate)
       },
      headers: this.HEADERS
     }
@@ -35,7 +44,9 @@ export default class extends Controller {
 
     axios.put(`/api/contents/${this.element.dataset.contentId}`, data, config)
       .then((response) => {
-        console.log('uploadFile response: ', response)
+        this.uploadProgressTarget.classList.add('hidden')
+        this.spinnerTarget.classList.add('hidden')
+        this.metadataTarget.classList.remove('hidden')
       })
   }
 
