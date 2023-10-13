@@ -10,7 +10,7 @@ export default class extends Controller {
 
   HEADERS = {
     'ACCEPT': 'application/json',
-    // 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
   }
 
   connect() {
@@ -28,7 +28,7 @@ export default class extends Controller {
         console.log('progressEvent: ', progressEvent)
         console.log('percentCompleted: ', percentCompleted)
       },
-      headers: this.HEADERS
+     headers: this.HEADERS
     }
     const data = new FormData()
     data.append('content[file]', file)

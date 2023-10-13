@@ -7,14 +7,14 @@ let files = []
 export default class extends Controller {
   HEADERS = {
     'ACCEPT': 'text/vnd.turbo-stream.html',
-    // 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
   }
 
   attachFile(content) {
     const contentId = content.element.dataset.contentId
     const fileIndex = files.findIndex(file => file.contentId == contentId)
     content.attachFile(files[fileIndex])
-    files = files.splice(fileIndex, fileIndex)
+    files.splice(fileIndex, 1)
     content.uploadFile()
   }
 
