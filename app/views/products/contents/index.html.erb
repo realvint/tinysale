@@ -1,4 +1,6 @@
-<%= form_with model: @product, class: 'file-picker', data: { controller: 'file-picker' } do |f| %>
+<%= form_with model: @product,
+              class: 'file-picker',
+              data: { controller: 'file-picker', action: 'submit->file-picker#submitForm', 'product-id': @product.slug } do |f| %>
   <%= render 'products/parts/sticky_header', product: @product,  f: f %>
 
   <div class="px-4 sm:px-6 lg:px-8 pb-10">

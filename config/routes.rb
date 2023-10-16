@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
 
     resources :contents, only: :index, controller: 'products/contents'
+    resources :attach_contents, only: :create, controller: 'products/attach_contents'
   end
 
   namespace :api do

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :content do
     product { nil }
-    name { "MyString" }
-    description { "MyText" }
+    name { Faker::Book.title }
+    description { Faker::Book.genre }
   end
 end

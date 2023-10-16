@@ -10,9 +10,10 @@ RSpec.describe 'Api::Contents', type: :request do
       expect do
         post api_contents_path, params: {
           content: {
-            name: 'Some file'
+            name: 'Some file',
+            file_type: 'application/pdf'
           }
-        }
+        }, headers: { 'ACCEPT': 'text/vnd.turbo-stream.html' }
       end.to change { Content.count }.from(0).to(1)
       expect(response).to have_http_status(:success)
     end

@@ -33,4 +33,36 @@ export default class extends Controller {
         })
     })
   }
+
+  getUploadedFileComponents() {
+    return Array.from(document.getElementsByClassName('uploaded-file-component'))
+  }
+
+  buildContentParams(fileComponent) {
+    const contentId = parseInt(fileComponent.dataset.contentId)
+    const name = fileComponent.querySelector('input[name="name"]').value
+    const description = fileComponent.querySelector('input[name="description"]').value
+    return {
+      id: contentId,
+      name: name,
+      description: description
+    }
+  }
+
+  submitForm(e) {
+    e.preventDefault()
+    const productId = this.element.dataset.productId
+    const contents = []
+
+    this.getUploadedFileComponents().forEach((fileComponent) => {
+      contents.push(this.buildContentParams(fileComponent))
+    })
+
+    axios.post(`/products/${productId}/attach_contents`, {
+      contents: contents,
+    }, { headers: this.HEADERS })
+      .then((response) => {
+        console.log(response)
+      })
+  }
 }
