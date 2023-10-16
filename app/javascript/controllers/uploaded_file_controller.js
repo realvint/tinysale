@@ -26,7 +26,8 @@ export default class extends Controller {
     const totalFileSize = this.uploadProgressTarget.dataset.fileSize
     const fileType = this.uploadProgressTarget.dataset.fileType
 
-    return `${fileType} · ${percentCompleted}% of ${totalFileSize} (${prettyBytes(uploadRate).toUpperCase()}/second)`
+    if(uploadRate) {
+      return `${fileType} · ${percentCompleted}% of ${totalFileSize} (${prettyBytes(uploadRate).toUpperCase()}/second)` }
   }
 
   uploadFile() {
