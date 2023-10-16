@@ -2,6 +2,7 @@
   data-controller="uploaded-file"
   data-uploaded-file-file-picker-outlet=".file-picker"
   data-content-id="<%= @content_id %>"
+  data-upload-completed="<%= @upload_completed %>"
   class="uploaded-file-component relative rounded-lg border border-gray-300 bg-white px-6 py-4 shadow-sm hover:border-gray-400 mb-4"
 >
   <div class="flex items-center space-x-3">
@@ -13,7 +14,7 @@
         <p class="text-sm font-medium text-gray-900"><%= @name %></p>
         <p class="truncate text-sm text-gray-500">
           <span
-            class="fa-solid fa-spinner fa-spin-pulse"
+            class="fa-solid fa-spinner fa-spin-pulse <%= 'hidden' if @upload_completed %>"
             data-uploaded-file-target="spinner"
           ></span>
           <span
@@ -23,7 +24,7 @@
             data-file-size="<%= number_to_human_size(@file_size) %>"
           ></span>
           <span
-            class="hidden"
+            class="<%= 'hidden' unless @upload_completed %>"
             data-uploaded-file-target="metadata"
           >
             <%= @file_type.match(/\/(.+)/)[1].upcase %> &middot; <%= number_to_human_size(@file_size) %>

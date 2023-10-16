@@ -15,7 +15,9 @@ export default class extends Controller {
   }
 
   connect() {
-    this.filePickerOutlet.attachFile(this)
+    if(this.element.dataset.uploadCompleted !== 'true') {
+      this.filePickerOutlet.attachFile(this)
+    }
   }
 
   attachFile(attachedFile) {
@@ -67,6 +69,10 @@ export default class extends Controller {
 
   delete(e) {
     e.preventDefault()
-    this.element.remove()
+
+    axios.delete(`/api/contents/${this.element.dataset.contentId}`, { headers: this.HEADERS })
+      .then(() => {
+        this.element.remove()
+      })
   }
 }

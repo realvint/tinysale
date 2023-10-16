@@ -18,4 +18,13 @@ RSpec.describe 'Api::Contents', type: :request do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'DELETE destroy' do
+    it 'should deletes a content' do
+      content = create(:content)
+      expect do
+        delete api_content_path(content), headers: { 'ACCEPT': 'application/json' }
+      end.to change { Content.count }.from(1).to(0)
+    end
+  end
 end

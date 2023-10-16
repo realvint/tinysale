@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :contents, only: [:create, :update]
+    resources :contents, only: [:create, :update, :destroy]
   end
 end

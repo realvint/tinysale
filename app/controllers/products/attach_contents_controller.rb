@@ -1,7 +1,5 @@
 module Products
   class AttachContentsController < ApplicationController
-    # before_action :authenticate_user!
-
     def create
       @product = Product.find(params[:product_id])
       @contents = []
@@ -14,13 +12,12 @@ module Products
         @contents << content
       end
       @contents.each(&:save)
-      redirect_to edit_product_path(@product), notice: 'Product was updated'
     end
 
     private
 
     def content_params
-      params.permit(contents: [:id, :name, :description])
+      params.permit(contents: %i[id name description])
     end
   end
 end

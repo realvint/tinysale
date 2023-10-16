@@ -42,6 +42,7 @@ export default class extends Controller {
     const contentId = parseInt(fileComponent.dataset.contentId)
     const name = fileComponent.querySelector('input[name="name"]').value
     const description = fileComponent.querySelector('input[name="description"]').value
+
     return {
       id: contentId,
       name: name,
@@ -62,7 +63,7 @@ export default class extends Controller {
       contents: contents,
     }, { headers: this.HEADERS })
       .then((response) => {
-        console.log(response)
+        Turbo.visit(`/products/${productId}/contents`)
       })
   }
 }

@@ -1,3 +1,4 @@
 <%= turbo_stream.append 'uploaded_files' do %>
-  <%= render UploadedFileComponent.new(content_id: @content.id, name: @content.name, file_type: @content.file_type, file_size: @content.file_size) %>
+  <%= render UploadedFileComponent.new(content_id: @content.id, name: @content.name, file_type: @content.file_type,
+                                       file_size: @content.file_size, upload_completed: @content.product_id.present?) %>
 <% end %>

@@ -4,7 +4,7 @@ module Products
 
     def index
       @product = Product.find(params[:product_id])
-      @contents = @product.contents
+      @contents = @product.contents.order(:created_at)
     end
   end
 end
