@@ -2,8 +2,6 @@ module Api
   class ContentsController < ApplicationController
     def create
       @content = Content.create(content_params)
-
-      respond_to(&:turbo_stream)
     end
 
     def update
@@ -21,11 +19,7 @@ module Api
       @content = Content.find(params[:id])
       @content.destroy
 
-      respond_to do |format|
-        format.json do
-          render json: {}, status: 200
-        end
-      end
+      flash.now[:notice] = 'Content was deleted'
     end
 
     private

@@ -13,11 +13,7 @@ module Products
       end
       @contents.each(&:save)
 
-      flash[:notice] = 'Product contents was updated'
-
-      respond_to do |format|
-        format.turbo_stream { render_turbo_flash }
-      end
+      flash.now[:notice] = 'Product contents was updated'
     end
 
     private

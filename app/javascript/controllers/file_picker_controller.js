@@ -63,7 +63,7 @@ export default class extends Controller {
       contents: contents,
     }, { headers: this.HEADERS })
       .then((response) => {
-        Turbo.visit(`/products/${productId}/contents`)
+        Turbo.renderStreamMessage(response.data)
       })
   }
 }

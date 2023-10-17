@@ -9,11 +9,6 @@ export default class extends Controller {
   static targets = ['form', 'open', 'close', 'delete', 'metadata', 'uploadProgress', 'spinner']
   static outlets = ['file-picker']
 
-  HEADERS = {
-    'ACCEPT': 'application/json',
-    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
-  }
-
   connect() {
     if(this.element.dataset.uploadCompleted !== 'true') {
       this.filePickerOutlet.attachFile(this)
@@ -40,7 +35,10 @@ export default class extends Controller {
         this.metadataTarget.classList.add('hidden')
         this.uploadProgressTarget.textContent = this.uploadProgressText(percentCompleted, progressEvent.rate)
       },
-     headers: this.HEADERS
+     headers: {
+       'ACCEPT': 'application/json',
+       'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+     }
     }
     const data = new FormData()
     data.append('content[file]', file)
@@ -70,8 +68,12 @@ export default class extends Controller {
   delete(e) {
     e.preventDefault()
 
-    axios.delete(`/api/contents/${this.element.dataset.contentId}`, { headers: this.HEADERS })
-      .then(() => {
+    axios.delete(`/api/contents/${this.element.dataset.contentId}`, { headers: {
+        'ACCEPT': 'text/vnd.turbo-stream.html',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+      } })
+      .then((response) => {
+        Turbo.renderStreamMessage(response.data)
         this.element.remove()
       })
   }
