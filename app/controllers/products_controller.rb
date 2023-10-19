@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update toggle_published]
 
   def index
-    @products = Product.all
+    @products = Product.order(:created_at)
   end
 
   def show; end

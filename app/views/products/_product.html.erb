@@ -1,0 +1,16 @@
+<tr>
+  <td class="px-2 py-4">
+    <div class="flex justify-center">
+      <img class="h-12 w-12" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+    </div>
+  </td>
+  <td class="whitespace-nowrap py-4 text-sm">
+    <div class="font-medium text-gray-900 pb-2"><%= link_to product.name, edit_product_path(product) %></div>
+    <div class="text-gray-500"><%= product_url(product)%></div>
+  </td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= humanized_money_with_symbol(product.price) %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= product.published? ? 'Published' : 'Unpublished' %></td>
+  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+    <%= link_to 'Edit', edit_product_path(product), class: 'text-indigo-600 hover:text-indigo-900' %>
+  </td>
+</tr>
