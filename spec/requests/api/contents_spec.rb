@@ -23,7 +23,7 @@ RSpec.describe 'Api::Contents', type: :request do
     it 'should deletes a content' do
       content = create(:content)
       expect do
-        delete api_content_path(content), headers: { 'ACCEPT': 'application/json' }
+        delete api_content_path(content), headers: { 'ACCEPT': 'text/vnd.turbo-stream.html' }
       end.to change { Content.count }.from(1).to(0)
     end
   end

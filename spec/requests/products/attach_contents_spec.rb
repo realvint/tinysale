@@ -20,8 +20,8 @@ RSpec.describe 'Proucts::AttachContents' do
 
       post product_attach_contents_path(product), params: {
         contents: content_params
-      }
-      expect(response).to have_http_status(:redirect)
+      }, headers: { 'ACCEPT': 'text/vnd.turbo-stream.html' }
+      expect(response).to have_http_status(:success)
 
       contents.each(&:reload).each do |content|
         expect(content.product_id).to eq product.id
