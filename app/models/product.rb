@@ -12,6 +12,7 @@ class Product < ApplicationRecord
   has_many :contents, dependent: :destroy
 
   has_one_attached :thumbnail, dependent: :purge
+  has_one_attached :cover, dependent: :purge
 
   validates :name, presence: true, uniqueness: { scope: :user_id, case_sensitive: false }
 

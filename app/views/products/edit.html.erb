@@ -24,6 +24,37 @@
         </div>
 
         <div class="col-span-full border-t pt-5">
+           <div data-product-form-target="coverSection" class="<%= 'hidden' unless @product.cover.attached? %>">
+             <span class="<%= form_label %> mb-1">
+              Cover
+               <%= link_to 'edit', '', data: { action: 'click->product-form#changeCover' }, class: 'cursor-pointer text-gray-400 ml-1' %>
+            </span>
+             <div>
+               <% if @product.cover.attached? %>
+                 <%= image_tag @product.cover.variant(resize_to_fit: [640, 480]), data: { 'product-form-target': 'cover'} %>
+               <% else %>
+                 <%= image_tag '', data: { 'product-form-target': 'cover'} %>
+               <% end %>
+             </div>
+           </div>
+
+           <div data-product-form-target="coverUploadSection" class="<%= 'hidden' if @product.cover.attached? %>">
+             <div class="flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6 bg-white mt-2">
+               <div class="space-y-3 text-center">
+                 <i class="fa-solid fa-arrow-up-from-bracket fa-2xl text-gray-600"></i>
+                 <div class="text-sm text-gray-600 justify-center">
+                   <label for="product_cover" class="relative cursor-pointer bg-white font-medium text-indigo-600 focus-within:outline-none hover:text-indigo-500">
+                     <span>Upload cover</span>
+                     <%= f.file_field :cover, data: { 'product-form-target': 'coverInput', 'action': 'change->product-form#attachCover' }, class: 'sr-only' %>
+                   </label>
+                 </div>
+                 <p class="text-xs text-gray-500">PNG, JPG up to 10MB</p>
+               </div>
+             </div>
+           </div>
+        </div>
+
+        <div class="col-span-full border-t pt-5">
           <span class="<%= form_label %>">
             Thumbnail
           </span>
