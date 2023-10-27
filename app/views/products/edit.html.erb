@@ -1,4 +1,4 @@
-<%= form_with model: @product do |f| %>
+<%= form_with model: @product, data: { controller: 'product-form' } do |f| %>
   <%= render 'products/parts/sticky_header', product: @product,  f: f %>
 
   <div class="px-4 sm:px-6 lg:px-8 pb-10">
@@ -20,6 +20,25 @@
           <%= f.label :description, class: form_label %>
           <div class="mt-1">
             <%= f.rich_text_area :description, class: "#{form_input} bg-white" %>
+          </div>
+        </div>
+
+        <div class="col-span-full border-t pt-5">
+          <span class="<%= form_label %>">
+            Thumbnail
+          </span>
+          <div class="mt-1 flex items-center gap-x-3">
+            <div class="h-24 w-24 flex justify-center align-middle">
+              <% if @product.thumbnail.attached? %>
+                <%= image_tag @product.thumbnail.variant(resize_to_fill: [96, 96]), class: 'rounded-md', data: { 'product-form-target': 'thumbnail'} %>
+              <% else %>
+                <%= image_tag 'thumbnail.png', data: { 'product-form-target': 'thumbnail'} %>
+              <% end %>
+            </div>
+            <label for="product_thumbnail" class="<%= white_btn %>">
+              <span>Change</span>
+              <%= f.file_field :thumbnail, data: { 'product-form-target': 'thumbnailInput', 'action': 'change->product-form#attachThumbnail' }, class: 'sr-only' %>
+            </label>
           </div>
         </div>
 

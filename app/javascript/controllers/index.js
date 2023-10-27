@@ -13,6 +13,9 @@ application.register("home", HomeController)
 import NotificationController from "./notification_controller"
 application.register("notification", NotificationController)
 
+import ProductFormController from "./product_form_controller"
+application.register("product-form", ProductFormController)
+
 import SidenavController from "./sidenav_controller"
 application.register("sidenav", SidenavController)
 
