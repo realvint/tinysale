@@ -1,25 +1,47 @@
-<div class="py-10 mb-6 px-4 sm:px-6 lg:px-8">
+<div class="mb-10 mb-6 border bg-white">
   <% if @product.cover.present? %>
-    <%= image_tag @product.cover, class: 'block' %>
+    <div class="flex justify-center">
+      <%= image_tag @product.cover, class: 'justify-center' %>
+    </div>
   <% else %>
-    <h1>Cover not added</h1>
+    <h1 class="px-4 sm:px-6 lg:px-8 py-3 text-center">Cover not added</h1>
   <% end %>
 
-  <div class="grid grid-cols-3">
-    <div class="col-span-2 my-5">
-      <h1 class="text-4xl tracking-wide font-medium leading-6 text-gray-900"><%= @product.name %></h1>
-      <p class="text-2xl mt-5"><%= humanized_money_with_symbol(@product.price) %> | <%= @product.user.email %></p>
-      <div class="mt-5">
-        <%= @product.description %>
+  <div class="grid grid-cols-3 border-t">
+    <div class="col-span-2">
+      <h1 class="text-3xl tracking-wide font-medium leading-6 text-gray-900 px-4 sm:px-6 lg:px-8 border-b py-4"><%= @product.name %></h1>
+      <div class="flex text-xl px-4 sm:px-6 lg:px-8 border-b">
+        <div class="border-r py-3 mr-4 pr-4 sm:pr-8 lg:pr-6">
+          <span class="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-md font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+             <%= humanized_money_with_symbol(@product.price) %>
+          </span>
+        </div>
+        <div class="py-3 inline-flex items-center"><%= @product.user.email %></div>
+      </div>
+      <div class="px-4 sm:px-6 lg:px-8 py-4">
+        <% if @product.description.present? %>
+          <%= @product.description %>
+        <% else %>
+          <span class="px-4 sm:px-6 lg:px-8 pt-3 text-center">Description not added</span>
+        <% end %>
       </div>
     </div>
-    <div class="col-span-1 my-5">
-      <div class="mb-5">
-        <%= button_tag 'I want this!', class: indigo_btn %>
-      </div>
-      <div>
-        <%= number_to_human_size(@product.contents.pluck(:file_size).map(&:to_i).sum) %>
+    <div class="border-l">
+      <div class="col-span-1 my-5 mx-2">
+        <div class="mb-5 text-center">
+          <%= button_tag 'I want this!', class: "#{indigo_btn} w-full justify-center" %>
+        </div>
+          <ul role="list" class="divide-y overflow-hidden shadow-sm ring-1 ring-gray-300 rounded-lg">
+            <li class="relative flex justify-center gap-x-6 px-4 py-3 hover:bg-gray-50 sm:px-6">
+              <%= link_to 'Download', product_url(@product) %>
+            </li>
+            <li class="relative flex justify-between gap-x-6 px-4 py-3 hover:bg-gray-50 sm:px-6">
+              <span class="font-semibold">Size:</span>
+              <span><%= number_to_human_size(@product.contents.pluck(:file_size).map(&:to_i).sum) %></span>
+            </li>
+          </ul>
       </div>
     </div>
+
   </div>
 </div>
