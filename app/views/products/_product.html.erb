@@ -10,7 +10,7 @@
   </td>
   <td class="whitespace-nowrap py-4 text-sm">
     <div class="font-medium text-gray-900 pb-2"><%= link_to product.name, edit_product_path(product) %></div>
-    <div class="text-gray-500"><%= product_url(product)%></div>
+    <div class="text-gray-500"><%= link_to product_url(product), product %></div>
   </td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= humanized_money_with_symbol(product.price) %></td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= product.published? ? 'Published' : 'Unpublished' %></td>

@@ -1,2 +1,25 @@
-<h1>Product Page</h1>
-<%= @product.name %>
+<div class="py-10 mb-6 px-4 sm:px-6 lg:px-8">
+  <% if @product.cover.present? %>
+    <%= image_tag @product.cover, class: 'block' %>
+  <% else %>
+    <h1>Cover not added</h1>
+  <% end %>
+
+  <div class="grid grid-cols-3">
+    <div class="col-span-2 my-5">
+      <h1 class="text-4xl tracking-wide font-medium leading-6 text-gray-900"><%= @product.name %></h1>
+      <p class="text-2xl mt-5"><%= humanized_money_with_symbol(@product.price) %> | <%= @product.user.email %></p>
+      <div class="mt-5">
+        <%= @product.description %>
+      </div>
+    </div>
+    <div class="col-span-1 my-5">
+      <div class="mb-5">
+        <%= button_tag 'I want this!', class: indigo_btn %>
+      </div>
+      <div>
+        <%= number_to_human_size(@product.contents.pluck(:file_size).map(&:to_i).sum) %>
+      </div>
+    </div>
+  </div>
+</div>

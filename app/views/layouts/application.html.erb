@@ -11,12 +11,19 @@
   </head>
 
   <body>
-    <%= render 'shared/sidenav' if user_signed_in? %>
-    <main class="<%= 'lg:pl-64' if user_signed_in? %>">
-      <div class="">
+    <% if controller_name == 'products' && action_name == 'show' %>
+      <main class=" container flex justify-center">
         <%= yield %>
-      </div>
-    </main>
+      </main>
+    <% else %>
+      <%= render 'shared/sidenav' if user_signed_in? %>
+      <main class="<%= 'lg:pl-64' if user_signed_in? %>">
+        <div class="">
+          <%= yield %>
+        </div>
+      </main>
+    <% end %>
+
     <div id='flash'>
       <%= render 'layouts/flash' %>
     </div>
