@@ -1,7 +1,7 @@
 <div class="mb-10 mb-6 border bg-white">
   <% if @product.cover.present? %>
     <div class="flex justify-center">
-      <%= image_tag @product.cover, class: 'justify-center' %>
+      <%= image_tag @product.cover, class: 'justify-center w-full' %>
     </div>
   <% else %>
     <h1 class="px-4 sm:px-6 lg:px-8 py-3 text-center">Cover not added</h1>
