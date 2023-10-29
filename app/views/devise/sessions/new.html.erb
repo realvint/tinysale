@@ -10,9 +10,9 @@
     <div class="bg-white py-8 px-4 shadow rounded-lg sm:px-10 ring-1 ring-gray-300 mx-2 lg:mx-0">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'space-y-6' }) do |f| %>
         <div>
-          <%= f.label :email, class: 'block text-sm font-medium text-gray-700' %>
+          <%= f.label :login, class: 'block text-sm font-medium text-gray-700' %>
           <div class="mt-1">
-            <%= f.email_field :email, autofocus: true, autocomplete: 'email', required: true, class: 'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'%>
+            <%= f.text_field :login, autofocus: true, autocomplete: 'email', required: true, class: 'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'%>
           </div>
         </div>
 

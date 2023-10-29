@@ -16,7 +16,7 @@
              <%= humanized_money_with_symbol(@product.price) %>
           </span>
         </div>
-        <div class="py-3 inline-flex items-center"><%= @product.user.email %></div>
+        <div class="py-3 inline-flex items-center"><span class="text-xl font-medium leading-6 text-gray-900"><%= @product.user.username %></span></div>
       </div>
       <div class="px-4 sm:px-6 lg:px-8 py-4">
         <% if @product.description.present? %>
