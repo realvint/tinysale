@@ -1,5 +1,5 @@
 <div
-  class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow hidden"
+  class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg text-<%= @color_class %>-800 bg-<%= @color_class %>-50 shadow hidden"
   data-controller= "notification"
   data-transition-enter="transform ease-out duration-300 transition"
   data-transition-enter-start="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
@@ -12,16 +12,16 @@
     <div class="p-4">
       <div class="flex items-start">
         <div class="flex-shrink-0">
-          <div class="h-6 w-6 <%= @icon_color_class %>">
+          <div class="h-6 w-6 text-<%= @color_class %>-400">
             <i class="<%= @icon_class %>"></i>
           </div>
         </div>
         <div class="ml-3 w-0 flex-1 pt-0.5">
-          <p class="text-sm font-medium text-gray-900">
+          <p class="text-sm font-medium text-<%= @color_class %>-800">
             <%= @data[:title] %>
           </p>
           <% if @data[:body].present? %>
-            <p class="mt-1 text-sm text-gray-500">
+            <p class="mt-1 text-sm text-<%= @color_class %>-800">
               <%= @data[:body] %>
             </p>
           <% end %>
@@ -29,7 +29,7 @@
         <div class="ml-4 flex flex-shrink-0">
           <button
             type="button"
-            class="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2"
+            class="inline-flex rounded-md bg-<%= @color_class %>-50 text-<%= @color_class %>-500 hover:text-<%= @color_class %>-100 focus:outline-none focus:ring-1 focus:ring-<%= @color_class %>-600 focus:ring-offset-<%= @color_class %>-50"
             data-action="click->notification#close"
           >
             <span class="sr-only">Close</span>

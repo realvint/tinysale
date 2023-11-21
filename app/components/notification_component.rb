@@ -5,7 +5,7 @@ class NotificationComponent < ViewComponent::Base
     @type = type
     @data = prepare_data(data)
     @icon_class = icon_class
-    @icon_color_class = icon_color_class
+    @color_class = color_class
   end
 
   private
@@ -23,25 +23,17 @@ class NotificationComponent < ViewComponent::Base
     case @type
     when 'notice'
       'fa-regular fa-circle-check'
-    when 'error'
-      'fas-solid fa-circle-exclamation'
-    when 'alert'
-      'fa-solid fa-circle-exclamation'
     else
-      'fa-solid fa-circle-info'
+      'fa-solid fa-circle-exclamation'
     end
   end
 
-  def icon_color_class
+  def color_class
     case @type
     when 'notice'
-      'text-green-400'
-    when 'error'
-      'text-red-400'
-    when 'alert'
-      'text-red-400'
+      'green'
     else
-      'text-gray-400'
+      'red'
     end
   end
 end
